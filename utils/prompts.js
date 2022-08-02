@@ -1,24 +1,24 @@
 const inquirer = require('inquirer');
 
 
-
+//ask manager questions pointed wowards them
 const managerPrompt = () => {
     return inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'name',
-                question: 'What is your name?'
+                message: 'What is your name?'
             },
             {
                 type: 'input',
                 name: 'id',
-                question: 'What is your Employee ID'
+                message: 'What is your Employee ID'
             },
             {
                 type: 'input',
                 name: 'email',
-                question: 'What is your email address',
+                message: 'What is your email address',
                 validate: userInput => {
                     if (!userInput.includes('@')) {
                         console.log('You must enter a valid email address');
@@ -31,29 +31,39 @@ const managerPrompt = () => {
             {
                 type: 'input',
                 name: 'officeNumber',
-                question: 'What is your office number?'
+                message: 'What is your office number?'
             }
         ])
-    .then(employeeData => employeeData)
+        .then(employeeData => {
+            employeeData['teamMemberRole'] = 'Manager'
+            return employeeData;
+        })
 }
 
-const employeePrompt = role => {
+//Ask employee specific questions
+const employeePrompt = (employeeArr=[]) => {
     return inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'name',
-                question: 'What is your name?'
+                message: "What is the employee's name?"
+            },
+            {
+                type: 'list',
+                name: 'teamMemberRole',
+                choices: ['Engineer', 'Intern'],
+                message: "What is the employee's role",
             },
             {
                 type: 'input',
                 name: 'id',
-                question: 'What is your Employee ID'
+                message: `What is the employee's ID`
             },
             {
                 type: 'input',
                 name: 'email',
-                question: 'What is your email address',
+                message: "What is the employee's email address",
                 validate: userInput => {
                     if (!userInput.includes('@')) {
                         console.log('You must enter a valid email address');
@@ -66,21 +76,27 @@ const employeePrompt = role => {
             {
                 type: 'input',
                 name: 'github',
-                question: 'Enter the engineers github username',
-                when: () => {
-                    return (role === 'Engineer') ? true : false
-                }
+                message: "Enter the engineer's github username",
+                when: ({teamMemberRole}) => (teamMemberRole === 'Engineer') ? true : false               
             },
             {
                 type: 'input',
                 name: 'school',
-                question: 'What school does the intern attend?',
-                when: () => {
-                    return (role === 'Intern') ? true : false
-                }
+                message: 'What school does the intern attend?',
+                when: ({teamMemberRole}) => (teamMemberRole === 'Intern') ? true : false
+                
+            },
+            {
+                type: 'confirm',
+                name: 'addTeamMember',
+                message: 'Would you like to add another team member?',
+                default: false
             }
         ])
-        .then(employeeData => employeeData);
+        .then(employeeData => {
+            employeeArr.push(employeeData)
+            return employeeData.addTeamMember ? employeePrompt(employeeArr) : employeeArr
+        });
 }
 
-module.exports = managerPrompt;
+module.exports = { managerPrompt, employeePrompt };
