@@ -12,9 +12,9 @@ const {managerPrompt,employeePrompt} = require('./utils/prompts');
 managerPrompt()
     .then(managerData => employeePrompt([managerData]))
     .then(results => {
-        return results.map(element => {
+        return results.map(obj => {
             //destructure element
-            let { name: name, teamMemberRole: role, id: id, email: email, addTeamMember: extra, ...others } = element;
+            let { name: name, teamMemberRole: role, id: id, email: email, addTeamMember: extra, ...others } = obj;
             //create new employee based on defined role
             switch (role) {
                 case 'Manager':
