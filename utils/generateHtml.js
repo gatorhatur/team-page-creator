@@ -17,7 +17,7 @@ function formatRoleText(role, specialText) {
 function generateCard(employeeObj) {
 
     let { name: empName, id: empId, email: empEmail, ...other } = employeeObj;
-    let roleText = other[0]
+    let roleText = other[Object.keys(other)]
     let role = employeeObj.getRole()
 
     return `

@@ -16,14 +16,15 @@ managerPrompt()
         return results.map(obj => {
             //destructure element
             let { name: name, teamMemberRole: role, id: id, email: email, addTeamMember: extra, ...others } = obj;
+            let roleStat = others[Object.keys(others)];
             //create new employee based on defined role
             switch (role) {
                 case 'Manager':
-                    return new Manager(name, id, email, others[0]);
+                    return new Manager(name, id, email, roleStat);
                 case 'Engineer':
-                    return new Engineer(name, id, email, others[0]);
+                    return new Engineer(name, id, email, roleStat);
                 case 'Intern':
-                    return new Intern(name, id, email, others[0]);
+                    return new Intern(name, id, email, roleStat);
             }
         })
     })
