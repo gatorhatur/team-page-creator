@@ -11,13 +11,14 @@ function getIcon(role) {
 
 
 function formatRoleText(role, specialText) {
+
     switch (role) {
         case 'Manager':
-            return `Office Number: ${specialText}`
+            return `<p class="card-text">Office Number: ${specialText}</p>`
         case 'Engineer':
-            return `Github: ${specialText}`
+            return `<a href="https://github.com/${specialText}"class="card-text">Github: ${specialText}</a>`
         case 'Intern':
-            return `School: ${specialText}`
+            return `<p class="card-text">School: ${specialText}</p>`
             
     }
 }
@@ -38,8 +39,8 @@ function generateCard(employeeObj) {
     </div>
     <div class="card-body">
       <p class="card-text">ID: ${empId}</p>
-      <p class="card-text">Email: ${empEmail}</p>
-      <p class="card-text">${formatRoleText(role,roleText)}</p>
+      <a href="mailto:${empEmail}"class="card-text">Email: ${empEmail}</a>
+      ${formatRoleText(role,roleText)}
     </div>
     </div>
     `
