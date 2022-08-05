@@ -16,6 +16,7 @@ function formatRoleText(role, specialText) {
 
 function generateCard(employeeObj) {
 
+    //deconstruct the data
     let { name: empName, id: empId, email: empEmail, ...other } = employeeObj;
     let roleText = other[Object.keys(other)]
     let role = employeeObj.getRole()
@@ -36,6 +37,10 @@ function generateCard(employeeObj) {
 }
 
 function generateHtml(employeeArr) {
+
+    let employeeCards = '';
+
+    employeeArr.forEach(employee => employeeCards += generateCard(employee));
 
     return `
     <!DOCTYPE html>
@@ -59,7 +64,7 @@ function generateHtml(employeeArr) {
 
     <main class="container mt-10 d-flex flex-wrap">
 
-        ${generateCard(employeeArr[0])}
+        ${employeeCards}
           
     </main>
 
