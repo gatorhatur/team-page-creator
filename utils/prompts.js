@@ -78,13 +78,27 @@ const employeePrompt = (employeeArr=[]) => {
                 type: 'input',
                 name: 'github',
                 message: "Enter the engineer's github username",
-                when: ({teamMemberRole}) => (teamMemberRole === 'Engineer') ? true : false               
+                when: ({ teamMemberRole }) => (teamMemberRole === 'Engineer') ? true : false,
+                validate: input => {
+                    if (!input) {
+                        console.log('You must enter a github username')
+                        return false;
+                    }
+                    return true;
+                }
             },
             {
                 type: 'input',
                 name: 'school',
                 message: 'What school does the intern attend?',
-                when: ({teamMemberRole}) => (teamMemberRole === 'Intern') ? true : false
+                when: ({ teamMemberRole }) => (teamMemberRole === 'Intern') ? true : false,
+                validate: input => {
+                    if (!input) {
+                        console.log('You must enter a school for your intern')
+                        return false;
+                    }
+                    return true;
+                }
                 
             },
             {
