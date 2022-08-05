@@ -3,18 +3,13 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
 const {managerPrompt,employeePrompt} = require('./utils/prompts');
 const generateHtml = require('./utils/generateHtml');
-
-
-//const employee = new Employee('Brandon', '1234', 'test@email.com');
-
-
-
+const fs = require('fs')
 
 managerPrompt()
     .then(managerData => employeePrompt([managerData]))
     .then(results => {
         return results.map(obj => {
-            //destructure element
+            //destructure questions
             let { name: name, teamMemberRole: role, id: id, email: email, addTeamMember: extra, ...others } = obj;
             let roleStat = others[Object.keys(others)];
             //create new employee based on defined role
@@ -28,7 +23,29 @@ managerPrompt()
             }
         })
     })
-    .then(employeeObjArr => console.log(generateHtml(employeeObjArr)));
+    .then(employeeObjArr => generateHtml(employeeObjArr))
+    .then(html => {
+        //create index.html for team web page
+        fs.writeFile('./dist/index.html', html, err => {
+            if (err) {
+                console.log('There was an error: ',err)
+                return
+            }
+
+            return;
+        }) //copy css to ./dist directory
+        fs.copyFile('./src/style.css', './dist/style.css', err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            return;
+        })
+    })
+    .then(() => {
+        console.log("You team web page is now available in the ./dist directory. Please remember to follow best practice and create an ./assets/css/ directory for the stylesheet")
+    });
 
 
 

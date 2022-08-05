@@ -1,6 +1,14 @@
 function getIcon(role) {
-    return
+    switch (role) {
+        case 'Manager':
+            return `oi-briefcase`
+        case 'Engineer':
+            return 'oi-wrench';
+        case 'Intern':
+            return 'oi-book'
+    }
 }
+
 
 function formatRoleText(role, specialText) {
     switch (role) {
@@ -21,11 +29,12 @@ function generateCard(employeeObj) {
     let roleText = other[Object.keys(other)]
     let role = employeeObj.getRole()
 
+    //return html code for the bootstrp card
     return `
     <div class="card mt-10 shadow" style="width: 18rem;">
     <div class="card-img-top bg-warning">
         <h3 class="p-10">${empName}</h3>
-        <h5 class="p-10"><span id="icon"></span>${role}</h5>
+        <h5 class="p-10"><span class="oi ${getIcon(role)}"></span>${role}</h5>
     </div>
     <div class="card-body">
       <p class="card-text">ID: ${empId}</p>
