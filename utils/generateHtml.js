@@ -16,7 +16,7 @@ function formatRoleText(role, specialText) {
         case 'Manager':
             return `<p class="card-text">Office Number: ${specialText}</p>`
         case 'Engineer':
-            return `<p>class="card-text">Github: <a href="https://github.com/${specialText}" target="_blank" ${specialText}</a></p>`
+            return `<p>class="card-text">Github: <a href="https://github.com/${specialText}" target="_blank">${specialText}</a></p>`
         case 'Intern':
             return `<p class="card-text">School: ${specialText}</p>`
             
@@ -72,7 +72,7 @@ function generateHtml(employeeArr) {
         <h1 class="text-light text-center">Meet our Team!</h1>
     </header>
 
-    <main class="container mt-10 d-flex flex-wrap">
+    <main class="container mt-10 p-10 d-flex flex-wrap justify-content-sm-center">
 
         ${employeeCards}
           
