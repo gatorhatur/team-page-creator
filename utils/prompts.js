@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 
 //ask manager questions pointed wowards them
 const managerPrompt = () => {
+    console.log(`Hello Manager!\nLet's build you a custom team site for customers to get to know your team!\nLet's start with you:\n`);
     return inquirer
         .prompt([
             {

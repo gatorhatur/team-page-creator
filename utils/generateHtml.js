@@ -16,7 +16,7 @@ function formatRoleText(role, specialText) {
         case 'Manager':
             return `<p class="card-text">Office Number: ${specialText}</p>`
         case 'Engineer':
-            return `<a href="https://github.com/${specialText}"class="card-text">Github: ${specialText}</a>`
+            return `<p>class="card-text">Github: <a href="https://github.com/${specialText}" target="_blank" ${specialText}</a></p>`
         case 'Intern':
             return `<p class="card-text">School: ${specialText}</p>`
             
@@ -39,7 +39,7 @@ function generateCard(employeeObj) {
     </div>
     <div class="card-body">
       <p class="card-text">ID: ${empId}</p>
-      <a href="mailto:${empEmail}"class="card-text">Email: ${empEmail}</a>
+      <p class="card-text">Email: <a href="mailto:${empEmail}">${empEmail}</a><p>
       ${formatRoleText(role,roleText)}
     </div>
     </div>
