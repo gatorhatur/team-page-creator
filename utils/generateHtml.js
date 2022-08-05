@@ -1,18 +1,35 @@
 function getIcon(role) {
-    retu
+    return
+}
+
+function formatRoleText(role, specialText) {
+    switch (role) {
+        case 'Manager':
+            return `Office Number: ${specialText}`
+        case 'Engineer':
+            return `Github: ${specialText}`
+        case 'Intern':
+            return `School: ${specialText}`
+            
+    }
 }
 
 function generateCard(employeeObj) {
+
+    let { name: empName, id: empId, email: empEmail, ...other } = employeeObj;
+    let roleText = other[0]
+    let role = employeeObj.getRole()
+
     return `
     <div class="card mt-10 shadow" style="width: 18rem;">
     <div class="card-img-top bg-warning">
-        <h3 class="p-10">Name</h3>
-        <h5 class="p-10"><span id="icon"></span>Manager</h5>
+        <h3 class="p-10">${empName}</h3>
+        <h5 class="p-10"><span id="icon"></span>${role}</h5>
     </div>
     <div class="card-body">
-      <p class="card-text">ID: </p>
-      <p class="card-text">Email: </p>
-      <p class="card-text">Office Number: </p>
+      <p class="card-text">ID: ${empId}</p>
+      <p class="card-text">Email: ${empEmail}</p>
+      <p class="card-text">${formatRoleText(role,roleText)}</p>
     </div>
     </div>
     `
@@ -42,33 +59,7 @@ function generateHtml(employeeArr) {
 
     <main class="container mt-10 d-flex flex-wrap">
 
-        ${generateCards()}
-
-
-
-          <div class="card mt-10 shadow" style="width: 18rem;">
-            <div class="card-img-top bg-warning">
-                <h3 class="p-10">Name</h3>
-                <h5 class="p-10"><span id="icon"></span>Engineer</h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">ID: </p>
-                <p class="card-text">Email: </p>
-                <p class="card-text">Github: </p>
-            </div>
-          </div>
-
-          <div class="card mt-10 shadow" style="width: 18rem;">
-            <div class="card-img-top bg-warning">
-                <h3 class="p-10">Name</h3>
-                <h5 class="p-10"><span id="icon"></span>Intern</h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">ID: </p>
-                <p class="card-text">Email: </p>
-                <p class="card-text">School: </p>
-            </div>
-          </div>
+        ${generateCard(employeeArr[0])}
           
     </main>
 
@@ -78,3 +69,5 @@ function generateHtml(employeeArr) {
 </html>    
     `
 }
+
+module.exports = generateHtml;

@@ -2,6 +2,7 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
 const {managerPrompt,employeePrompt} = require('./utils/prompts');
+const generateHtml = require('./utils/generateHtml');
 
 
 //const employee = new Employee('Brandon', '1234', 'test@email.com');
@@ -26,7 +27,7 @@ managerPrompt()
             }
         })
     })
-    .then(employeeObjArr => console.log(employeeObjArr));
+    .then(employeeObjArr => console.log(generateHtml(employeeObjArr)));
 
 
 
