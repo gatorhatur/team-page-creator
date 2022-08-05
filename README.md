@@ -19,7 +19,7 @@ As a Dev Team manager I like to be able to showcase our Team to potential client
 
 `npm index.js`
 
-Index.html and stylesheets will be found in ./dist directory. [Sample Readme](./dist/index.html)
+Index.html and stylesheets will be found in ./dist directory. [Sample HTML](./dist/index.html)
 
 See [Demo Video](https://drive.google.com/file/d/1GSkFBeaZkpR2Hd2uJhpQES5N_KaGLfo5/view)
 
@@ -31,4 +31,4 @@ See [Demo Video](https://drive.google.com/file/d/1GSkFBeaZkpR2Hd2uJhpQES5N_KaGLf
 ## Links
 
 [Follow me on Github](https://github.com/gatorhatur)<br>
-[Readme made easy code](https://github.com/gatorhatur/team-page-creator)
+[Team Page Creator Repo](https://github.com/gatorhatur/team-page-creator)
